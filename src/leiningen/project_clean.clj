@@ -40,10 +40,11 @@
 (defn project-clean
   "Clean the current project and all Clojure files within it."
   [project & args]
-  (doseq [dir (dirs project)
-          file (clj-files dir)]
-    (when (not= "project.clj" (.getName file))
-      (if-let [new-ns (some-> (clean-ns {:path (.getPath file)}) pprint-ns)]
-        (do (println "project-clean: Rewriting cleaned" (.getPath file))
-            (replace-ns file new-ns))
-        (println "project-clean: No clean required in" (.getPath file))))))
+  (with-redefs [refactor-nrepl.ns.prune-dependencies/libspec-in-use-with-refer-all? (constantly true)]
+    (doseq [dir (dirs project)
+            file (clj-files dir)]
+      (when (not= "project.clj" (.getName file))
+        (if-let [new-ns (some-> (clean-ns {:path (.getPath file)}) pprint-ns)]
+          (do (println "project-clean: Rewriting cleaned" (.getPath file))
+              (replace-ns file new-ns))
+          (println "project-clean: No clean required in" (.getPath file)))))))

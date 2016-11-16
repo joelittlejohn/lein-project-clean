@@ -1,4 +1,4 @@
-(defproject lein-project-clean "0.1.0-SNAPSHOT"
+(defproject lein-project-clean "0.1.0"
   :description "A lein plugin to tidy/refactor source files in a project via refactor-nrepl middleware"
   :url "https://github.com/joelittlejohn/lein-project-clean"
   :license {:name "Eclipse Public License"

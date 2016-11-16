@@ -4,8 +4,11 @@ A lein plugin to tidy/refactor source files in a project via refactor-nrepl midd
 
 ## Usage
 
-Put `[lein-project-clean "0.1.0"]` into the `:plugins` vector of your
-`:user` profile.
+Put 
+
+![](https://clojars.org/lein-project-clean/latest-version.svg) 
+
+into the `:plugins` vector of your `:user` profile.
 
 In a project you want to clean:
 

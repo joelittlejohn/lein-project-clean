@@ -1,5 +1,6 @@
 (ns leiningen.project-clean
   (:require [clojure.java.io :as io]
+            [refactor-nrepl.core :refer [source-file?]]
             [refactor-nrepl.ns
              [clean-ns :refer [clean-ns]]
              [pprint :refer [pprint-ns]]]
@@ -42,9 +43,11 @@
   [project & args]
   (with-redefs [refactor-nrepl.ns.prune-dependencies/libspec-in-use-with-refer-all? (constantly true)]
     (doseq [dir (dirs project)
-            file (clj-files dir)]
-      (when (not= "project.clj" (.getName file))
-        (if-let [new-ns (some-> (clean-ns {:path (.getPath file)}) pprint-ns)]
-          (do (println "project-clean: Rewriting cleaned" (.getPath file))
+            file (clj-files dir)
+            :let [path (.getPath file)]]
+      (if (source-file? path)
+        (if-let [new-ns (some-> (clean-ns {:path path}) pprint-ns)]
+          (do (println "project-clean: Rewriting cleaned" path)
               (replace-ns file new-ns))
-          (println "project-clean: No clean required in" (.getPath file)))))))
+          (println "project-clean: No clean required in" path))
+        (println "project-clean: Ignoring" path)))))

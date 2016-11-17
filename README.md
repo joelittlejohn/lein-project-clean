@@ -1,6 +1,6 @@
 # lein-project-clean
 
-A lein plugin to tidy/refactor source files in a project via refactor-nrepl middleware.
+A lein plugin to tidy/refactor source files in a project via refactor-nrepl middleware. This plugin uses refactor-nrepl's library of refactorings and Yannick Scherer's excellent [rewrite-clj](https://github.com/xsc/rewrite-clj).
 
 ## Usage
 

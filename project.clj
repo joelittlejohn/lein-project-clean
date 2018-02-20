@@ -3,8 +3,8 @@
   :url "https://github.com/joelittlejohn/lein-project-clean"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[cider/cider-nrepl "0.15.1"]
-                 [commons-io "2.5"]
+  :dependencies [[cider/cider-nrepl "0.16.0"]
+                 [commons-io "2.6"]
                  [refactor-nrepl "2.3.1"]
                  [rewrite-clj "0.6.0"]]
   :deploy-repositories {"releases" :clojars}
